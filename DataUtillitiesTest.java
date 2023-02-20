@@ -1,4 +1,14 @@
-public class DataUtillitiesTest {
+package org.jfree.data.test;
+
+import static org.junit.Assert.*;
+import org.jmock.Mockery;
+import org.jmock.Expectations;
+import org.junit.Before;
+import org.junit.Test;
+import java.security.*;
+import org.jfree.data.*;
+
+public class DataUtilitiesTest {
 
     private Values2D values;
     private Number[] myNumberArray;
@@ -459,7 +469,7 @@ public class DataUtillitiesTest {
      */
 	@Test
 	public void validCumulativePercentage() {
-		KeyedValues actual = getCumulativePercentages(myKeyedValues);
+		KeyedValues actual = DataUtilities.getCumulativePercentages(myKeyedValues);
 		double expected[] = {0.0, 0.1, 0.3, 0.6, 1.0};
 		for(int i = 0; i < 5; i++) {
 			assertEquals(expected[i], actual.getValue(i));
@@ -475,7 +485,7 @@ public class DataUtillitiesTest {
 		KeyedValues testNull = null;
 		
 		try {
-			getCumulativePercentages(testNull);
+			DataUtilities.getCumulativePercentages(testNull);
 		}
 		//TA approved try catch is okay for wrong exceptions being thrown by method
 		catch(InvalidParameterException e) {
@@ -509,7 +519,7 @@ public class DataUtillitiesTest {
 	        }
 	    });
 	    
-	    KeyedValues actual = getCumulativePercentages(values1);
+	    KeyedValues actual = DataUtilities.getCumulativePercentages(values1);
 	    for(int i = 0; i < 3; i++) {
 			assertEquals(Double.NaN, actual.getValue(i));
 		}
