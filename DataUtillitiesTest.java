@@ -478,24 +478,12 @@ public class DataUtilitiesTest {
 	
 	/* Test: invalidCumulativePercentageNull
      * Description: Sets a KeyedValue object to null and passes it to the function
-     * Expected Return: Invalid parameter exception thrown
+     * Expected Return: IllegalArgumentException thrown
      */
-	@Test (expected = InvalidParameterException.class)
-	public void invalidCumulativePercentageNull() throws InvalidParameterException {
-		KeyedValues testNull = null;
-		
-		try {
-			DataUtilities.getCumulativePercentages(testNull);
+	@Test (expected = IllegalArgumentException.class)
+		public void invalidCumulativePercentageNull() throws IllegalArgumentException {
+			getCumulativePercentages(null);
 		}
-		//TA approved try catch is okay for wrong exceptions being thrown by method
-		catch(InvalidParameterException e) {
-			throw e;
-		}
-		
-		catch(Exception t) {
-			
-		}
-	}
 	
 	
 	/* Test: invalidCumulativePercentage0
@@ -519,11 +507,91 @@ public class DataUtilitiesTest {
 	        }
 	    });
 	    
-	    KeyedValues actual = DataUtilities.getCumulativePercentages(values1);
+	    KeyedValues actual = getCumulativePercentages(values1);
 	    for(int i = 0; i < 3; i++) {
 			assertEquals(Double.NaN, actual.getValue(i));
 		}
 	}
-
-
+	
+	//NEW TESTS
+	
+	/* Test: singleNullValueTest
+     * Description: Sets a KeyedValue object to valid numbers with only one 
+     * 	value being null and the item count as -1
+     * Expected Return: Every value is calculated with the exception of the null value
+     */
+	@Test
+	public void incorrectItemCountTest() {
+		Mockery mockingContext = new Mockery();
+	    KeyedValues values2 = mockingContext.mock(KeyedValues.class);
+	    mockingContext.checking(new Expectations() {
+	    	{
+	    		for(int i = 0; i < 3; i++) {
+	    			 
+	    			allowing(values2).getKey(i); //KeyedValues object is created with keys {0,1,2} and values {0,0,0}
+	    			will(returnValue(i));
+	    			allowing(values2).getValue(i);
+	    			if(i == 0) {
+	        			will(returnValue(1));
+	        		}
+	        		if(i == 1) {
+	        			will(returnValue(null));
+	        		}
+	        		
+	        		if(i == 2) {
+	        			will(returnValue(4));
+	        		}
+	        	
+	        	}
+	        	allowing(values2).getItemCount();
+	        	will(returnValue(-1));
+	        }
+	    });
+	    
+		KeyedValues actual = getCumulativePercentages(values2);
+	    double expected[] = {0.2, 0.0, 0.8};
+		for(int i = 0; i < 3; i++) {
+			assertEquals(expected[i], actual.getValue(i));
+		}
+	}
+	
+	
+	/* Test: singleNullValueTest
+     * Description: Sets a KeyedValue object to valid numbers with only one value being null
+     * Expected Return: Every value is calculated with the exception of the null value
+     */
+	@Test
+	public void singleNullValueTest() {
+		Mockery mockingContext = new Mockery();
+	    KeyedValues values2 = mockingContext.mock(KeyedValues.class);
+	    mockingContext.checking(new Expectations() {
+	    	{
+	    		for(int i = 0; i < 3; i++) {
+	 
+	    			allowing(values2).getKey(i); //KeyedValues object is created with keys {0,1,2} and values {0,0,0}
+	    			will(returnValue(i));
+	    			allowing(values2).getValue(i);
+	    			if(i == 0) {
+	        			will(returnValue(1));
+	        		}
+	        		if(i == 1) {
+	        			will(returnValue(null));
+	        		}
+	        		
+	        		if(i == 2) {
+	        			will(returnValue(4));
+	        		}
+	        	
+	        	}
+	        	allowing(values2).getItemCount();
+	        	will(returnValue(3));
+	        }
+	    });
+	    
+		KeyedValues actual = getCumulativePercentages(values2);
+	    double expected[] = {0.2, 0.0, 0.8};
+		for(int i = 0; i < 3; i++) {
+			assertEquals(expected[i], actual.getValue(i));
+		}
+	}
 }
