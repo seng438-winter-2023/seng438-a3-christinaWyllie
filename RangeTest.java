@@ -92,22 +92,38 @@ public class RangeTest {
     	exampleRange.contains(1.5));
     }
     
+   /* Test: notIntersectLowerNotIntersectUpperLessThanLower
+     * Description: Sends a lower bound that is greater than the upper bound 
+     * 	and neither bound is intersecting 
+     * TEST UPDATED FROM PREVIOUS
+     */
+
     @Test  
-    public void intersectInvalidLowerBound() {
-    	assertTrue("Given range should intersect with initialized range, but does not.",
-    	testRange.intersects(17, 4.75));
+    public void notIntersectLowerNotIntersectUpperLessThanLower() {
+    	assertFalse("Given range shouldn't intersect with initialized range, but does.",
+    	testRange.intersects(17, 7.0));
     }
     
-    /* Test: intersectInvalidUpperBound
-     * Description: Sends a upper bound that is greater than the lower bound 
-     * 
-     * Assumption: An assumption is made that this data will intersect 
-     * because if the bounds were switched it would return true
+    /* Test: notIntersectLowerIntersectUpperLessThanLower
+     * Description: Sends a lower bound that is greater than the upper bound 
+     * 	The "upper bound" is intersecting
+     * TEST UPDATED FROM PREVIOUS
      */
     @Test
-    public void intersectInvalidUpperBound(){
-    	assertTrue("Given range should intersect with initialized range, but does not.",
+    public void notIntersectLowerIntersectUpperLessThanLower(){
+    	assertFalse("Given range shouldn't intersect with initialized range, but does.",
     	testRange.intersects(7.0, -3.0));
+    }
+    
+    /* Test: intersectLowerNotIntersectUpperLessThanLower
+     * Description: Sends a lower bound that is greater than the upper bound 
+     * 	The "lower bound" is intersecting
+     * NEW TEST!!!
+     */
+    @Test
+    public void intersectLowerNotIntersectUpperLessThanLower(){
+    	assertFalse("Given range shouldn't intersect with initialized range, but does.",
+    	testRange.intersects(3.0, -6.0));
     }
     
     
