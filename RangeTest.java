@@ -85,11 +85,24 @@ public class RangeTest {
     	exampleRange.contains(-1.5));
     }
     
-    //testing method contains() for invalid value outside upper boundary
+    //Test: testing method contains() for invalid value outside upper boundary
     @Test
     public void rangeContainsPastUpperBound() {
     	assertFalse("The range of -1 to 1 does not contain 1.5 ",
     	exampleRange.contains(1.5));
+    }
+    
+   /* Test: rangeContainsEqualBound
+     * Description: Testing method contains() for range lower = upper
+     * returns TRUE
+     * NEW TEST
+     */
+    
+    @Test
+    public void rangeContainsEqualBound()
+    {
+    	assertTrue("The range of 1 to 1 contains 1", 
+    	exampleEqualRange.contains(1.0));
     }
     
    /* Test: notIntersectLowerNotIntersectUpperLessThanLower
