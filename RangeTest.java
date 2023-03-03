@@ -1,3 +1,13 @@
+/*
+Class: SENG 438
+File: RangeTest.java
+Purpose: Test the getLowerBound, getUpperBound, getLength, contains, and intersectstests method in the class Range. 
+# of Tests: 37
+Failures: 7
+Author: Christina Wyllie, Sobia Khan, Maitry Rphit
+Date: March 3, 2023
+*/
+
 package org.jfree.data;
 
 import static org.junit.Assert.*; import org.jfree.data.Range; import org.junit.*;
@@ -15,6 +25,11 @@ public class RangeTest {
         testRange = new Range(-5.0, 5.0);
     }
 
+    
+    /*
+    * getLowerBound() tests
+    */
+    
     //testing method getLowerBound() for case where upper bound != lower bound
     @Test
     public void lowerBoundRange() {
@@ -28,6 +43,10 @@ public class RangeTest {
     	assertEquals("Lower bound of 1 and 1 ",
     	1, exampleEqualRange.getLowerBound(), .000000001d);
     }
+    
+     /*
+    * getUpperBound() tests
+    */
     
     //testing method getUpperBound() for case where upper bound != lower bound
     @Test
@@ -43,6 +62,10 @@ public class RangeTest {
     	1, exampleEqualRange.getUpperBound(), .000000001d);
     }
     
+     /*
+    * getLength() tests
+    */
+    
     //testing method getLength() for range with length greater than 0
     @Test
     public void lengthRange() {
@@ -56,6 +79,10 @@ public class RangeTest {
     	assertEquals("Length of range 1 and 1 ",
     	0, exampleEqualRange.getLength(), .000000001d);
     }
+    
+     /*
+    * contains() tests
+    */
     
     //testing method contains() for valid value between boundary
     @Test
@@ -104,6 +131,10 @@ public class RangeTest {
     	assertTrue("The range of 1 to 1 contains 1", 
     	exampleEqualRange.contains(1.0));
     }
+    
+     /*
+    * intersects() tests
+    */
     
    /* Test: notIntersectLowerNotIntersectUpperLessThanLower
      * Description: Sends a lower bound that is greater than the upper bound 
