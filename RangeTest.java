@@ -4,7 +4,7 @@ File: RangeTest.java
 Purpose: Test the getLowerBound, getUpperBound, getLength, contains, and intersectstests method in the class Range. 
 # of Tests: 37
 Failures: 7
-Author: Christina Wyllie, Sobia Khan, Maitry Rphit
+Author: Sobia Khan, Maitry Rohit, Jamie Stade
 Date: March 3, 2023
 */
 
