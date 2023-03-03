@@ -7,7 +7,7 @@ Purpose: Test the calculateColumnTotal, calculateRowTotal, createNumberArray, cr
 # of Tests: 37
 Failures: 7
 
-Author: Christina Wyllie, Sobia Khan, Maitry Rphit
+Author: Christina Wyllie, Sobia Khan, Maitry Rohit
 Date: March 3, 2023
 
 */
