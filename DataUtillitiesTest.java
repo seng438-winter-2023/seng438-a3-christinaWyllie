@@ -21,7 +21,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.security.*;
 
-public class CalculateTotalTests {
+public class DataUtilities {
 	
 	private Values2D values;
 	private Number[] myNumberArray;
