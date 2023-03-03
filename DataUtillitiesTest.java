@@ -21,7 +21,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.security.*;
 
-public class DataUtilities {
+public class DataUtilitiesTest {
 	
 	private Values2D values;
 	private Number[] myNumberArray;
